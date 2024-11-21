@@ -39,7 +39,8 @@ bool stringDiterima(const string& input) {
     State currentState = Q0;
     stack<char> pdaStack;
 
-    for (char c : input) {
+    for (char c : input)
+    {
         if (c != '{'&& c != '[' && c != '(' && c != ')'&& c != ']' && c != '}')
         {
             cout <<  "Input invalid: hanya simbol '(, {, [, ], }, )' yang diperbolehkan." << endl;
@@ -72,6 +73,6 @@ int main() {
 
     } while (choice == 'y' || choice == 'Y');
 
-    cout << "Program selesai." << endl;
+    cout << "Program selesai...." << endl;
     return 0;
 }
