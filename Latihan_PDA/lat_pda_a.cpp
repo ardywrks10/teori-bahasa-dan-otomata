@@ -5,7 +5,7 @@
 using namespace std;
 
 enum State {
-    Q0,
+    S0,
     REJECT
 };
 
@@ -14,7 +14,7 @@ State nextState(State currentState, char input, stack<char>& pdaStack) {
         case Q0:
             if (input == '(' || input == '[' || input == '{') {
                 pdaStack.push(input);
-                return Q0;
+                return S0;
             } else if (input == ')' || input == ']' || input == '}') {
                 if (pdaStack.empty())
                     return REJECT;
@@ -23,7 +23,7 @@ State nextState(State currentState, char input, stack<char>& pdaStack) {
                     (input == ']' && pdaStack.top() == '[') ||
                     (input == '}' && pdaStack.top() == '{')) {
                     pdaStack.pop();
-                    return Q0;
+                    return S0;
                 } else {
                     return REJECT;
                 }
@@ -36,7 +36,7 @@ State nextState(State currentState, char input, stack<char>& pdaStack) {
 }
 
 bool stringDiterima(const string& input) {
-    State currentState = Q0;
+    State currentState = S0;
     stack<char> pdaStack;
 
     for (char c : input)
@@ -51,7 +51,7 @@ bool stringDiterima(const string& input) {
             return false;
     }
 
-    return currentState == Q0 && pdaStack.empty();
+    return currentState == S0 && pdaStack.empty();
 }
 
 int main() {
